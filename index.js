@@ -34,5 +34,5 @@ mongoose.connect(
 );
 
 app.use("/auth", require("./routes/authRoute"));
-app.use("/novel", require("./routes/novelRoute"));
+app.use("/todo", require("./routes/todoRoute"));
 app.use("/users", require("./routes/usersRoute"));
