@@ -77,14 +77,14 @@ router.post("/", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
 
-    if (!username || !password)
+    if (!email || !password)
       return res
         .status(400)
         .json({ errorMessage: "Please enter all required fields." });
 
-    const existingUser = await User.findOne({ username });
+    const existingUser = await User.findOne({ email });
     if (!existingUser)
       return res.status(401).json({ errorMessage: "Wrong email or password." });
 
