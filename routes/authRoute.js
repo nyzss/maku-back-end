@@ -108,7 +108,7 @@ router.post("/login", async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        maxAge: 900000,
+        maxAge: 4 * 7 * 24 * 60 * 60 * 1000, // 30*  24 * 60 * 60 * 1000 = 1 month
       })
       .send();
   } catch (err) {

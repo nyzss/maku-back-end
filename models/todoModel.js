@@ -7,7 +7,6 @@ const todoSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true,
   },
   createdAt: {
     type: Date,
@@ -15,6 +14,10 @@ const todoSchema = new mongoose.Schema({
   },
   userId: {
     type: String,
+  },
+  completed: {
+    type: Boolean,
+    default: false,
   },
 });
 
