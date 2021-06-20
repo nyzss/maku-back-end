@@ -59,4 +59,16 @@ router.delete("/delete", auth, async (req, res) => {
   }
 });
 
+router.put("/edit", auth, async (req, res) => {
+  try {
+    const todoId = req.body.todoId;
+
+    Todo.findOneAndUpdate({ _id: todoId }, {});
+
+    res.json(req.body);
+  } catch (error) {
+    res.json("Error!");
+  }
+});
+
 module.exports = router;
