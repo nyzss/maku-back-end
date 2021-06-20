@@ -50,7 +50,7 @@ router.delete("/delete", auth, async (req, res) => {
   try {
     const todoId = req.body.todoId;
 
-    Todo.deleteOne({ _id: todoId });
+    await Todo.deleteOne({ _id: todoId });
 
     res.json("Successfully deleted!");
   } catch (error) {
