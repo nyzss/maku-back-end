@@ -59,7 +59,7 @@ router.post("/", async (req, res) => {
         user: savedUser._id,
       },
       process.env.JWT_SECRET,
-      { expiresIn: 4 * 7 * 24 * 60 * 60 * 1000 }
+      { expiresIn: "30d" }
     );
 
     res
@@ -67,7 +67,7 @@ router.post("/", async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        maxAge: 4 * 7 * 24 * 60 * 60 * 1000,
+        maxAge: 30 * 24 * 60 * 60 * 1000,
       })
       .send();
   } catch (err) {
@@ -101,7 +101,7 @@ router.post("/login", async (req, res) => {
         user: existingUser._id,
       },
       process.env.JWT_SECRET,
-      { expiresIn: 4 * 7 * 24 * 60 * 60 * 1000 }
+      { expiresIn: "30d" } // should be about 1 month 1 day, i dont even know myself ffs
     );
 
     res
@@ -109,7 +109,7 @@ router.post("/login", async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        maxAge: 4 * 7 * 24 * 60 * 60 * 1000, // 4 * 7 *  24 * 60 * 60 * 1000 = 1 month
+        maxAge: 30 * 24 * 60 * 60 * 1000, // 4 * 7 *  24 * 60 * 60 * 1000 = 1 month
       })
       .send();
   } catch (err) {
