@@ -74,4 +74,16 @@ router.put("/edit", auth, async (req, res) => {
   }
 });
 
+router.put("/completed", auth, async (req, res) => {
+  try {
+    const todoId = req.body.todoId;
+
+    await Todo.updateOne({ _id: todoId }, { completed: req.body.completed });
+
+    res.json("Success!");
+  } catch (error) {
+    res.json("Error!");
+  }
+});
+
 module.exports = router;
