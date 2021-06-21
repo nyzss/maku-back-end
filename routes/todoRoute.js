@@ -63,9 +63,12 @@ router.put("/edit", auth, async (req, res) => {
   try {
     const todoId = req.body.todoId;
 
-    Todo.findOneAndUpdate({ _id: todoId }, {});
+    await Todo.updateOne(
+      { _id: todoId },
+      { title: req.body.title, description: req.body.description }
+    );
 
-    res.json(req.body);
+    res.json("Success!");
   } catch (error) {
     res.json("Error!");
   }
