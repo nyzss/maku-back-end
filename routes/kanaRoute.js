@@ -5,12 +5,9 @@ const Katakana = require("../models/katakanaModel");
 router.get("/hiragana", async (_, res) => {
   try {
     // --- //
-    // const hiraganas = await Hiragana.find({}, "-_id");
+    const hiraganas = await Hiragana.find({}, "-_id");
     //it does not return the _id, it's most likely going to not be used
     // if it is used i'll just remove the "-_id"
-
-    //had to put a key and a couple of extra kbs cant hurt, right? RIGHT?!
-    const hiraganas = await Hiragana.find({});
 
     res.json(hiraganas);
     // --- //
@@ -21,7 +18,8 @@ router.get("/hiragana", async (_, res) => {
 
 router.get("/katakana", async (_, res) => {
   try {
-    const katakanas = await Katakana.find({});
+    //not sending the _id too because i dont need to
+    const katakanas = await Katakana.find({}, "-_id");
 
     res.json(katakanas);
   } catch (error) {
