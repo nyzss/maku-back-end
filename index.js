@@ -35,4 +35,5 @@ mongoose.connect(
 
 app.use("/auth", require("./routes/authRoute"));
 app.use("/todo", require("./routes/todoRoute"));
+app.use("/kana", require("./routes/kanaRoute"));
 app.use("/users", require("./routes/usersRoute"));
