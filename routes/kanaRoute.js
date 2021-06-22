@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const Hiragana = require("../models/hiraganaModel");
+const Katakana = require("../models/katakanaModel");
 
-router.get("/hiragana", async (req, res) => {
+router.get("/hiragana", async (_, res) => {
   try {
     // --- //
     // const hiraganas = await Hiragana.find({}, "-_id");
@@ -15,6 +16,16 @@ router.get("/hiragana", async (req, res) => {
     // --- //
   } catch (error) {
     res.json("Error at hiragana!");
+  }
+});
+
+router.get("/katakana", async (_, res) => {
+  try {
+    const katakanas = await Katakana.find({});
+
+    res.json(katakanas);
+  } catch (error) {
+    res.json("Error at katakana!");
   }
 });
 
