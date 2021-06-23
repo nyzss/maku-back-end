@@ -10,18 +10,13 @@ router.get("/me", async (req, res) => {
 
     const currentUserId = jwt.verify(token, process.env.JWT_SECRET).user;
 
-    const getCurrentUser = await User.findOne({ _id: currentUserId });
+    //excluding non used fields from returning, if needed can be easily included again
+    const getCurrentUser = await User.findOne(
+      { _id: currentUserId },
+      "-passwordHash -__v -updatedAt"
+    );
 
-    const currentUser = {
-      username: getCurrentUser.username,
-      email: getCurrentUser.email,
-      _id: getCurrentUser._id,
-      createdAt: getCurrentUser.createdAt,
-      avatarUrl: getCurrentUser.avatarUrl,
-      bio: getCurrentUser.bio,
-    };
-
-    res.json(currentUser);
+    res.json(getCurrentUser);
   } catch (err) {
     res.json(false);
   }
@@ -36,7 +31,11 @@ router.put("/edit", async (req, res) => {
 
     await User.updateOne(
       { _id: currentUserId }, //finding what to edit
-      { bio: req.body.bio, avatarUrl: req.body.avatarUrl } // new edited content
+      {
+        bio: req.body.bio,
+        avatarUrl: req.body.avatarUrl,
+        updatedAt: Date.now(),
+      } // new edited content
     );
 
     res.json("Successfully updated!");
