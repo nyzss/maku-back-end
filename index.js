@@ -7,13 +7,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 
-app.use(
-  cors()
-  // cors({
-  //   // origin: ["https://maku.netlify.app/", "http://localhost:3000"],
-  //   credentials: true,
-  // })
-);
+app.use(cors({ credentials: true }));
 
 const PORT = process.env.PORT || 5000;
 
