@@ -9,14 +9,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "*",
-    credentials: true,
-  })
-);
-
-app.use(
-  cors({
-    origin: "*",
+    origin: "https://maku.netlify.app",
     credentials: true,
   })
 );
