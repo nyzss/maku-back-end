@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "maku.netlify.app",
+    origin: "https://maku.netlify.app/",
     credentials: true,
   })
 );
