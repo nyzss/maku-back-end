@@ -9,7 +9,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ["https://maku.netlify.app/", "http://localhost:3000"],
+    // origin: ["https://maku.netlify.app/", "http://localhost:3000"],
     credentials: true,
   })
 );
