@@ -9,11 +9,17 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+const allowedOrigins = [
+  "https://maku.netlify.app/",
+  "http://maku.netlify.app/",
+  "http://localhost:3000",
+];
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://maku.netlify.app/",
+    origin: allowedOrigins,
     credentials: true,
   })
 );
