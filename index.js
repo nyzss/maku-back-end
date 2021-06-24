@@ -7,7 +7,17 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 
-app.use(cors({ credentials: true }));
+// i'm trying this, if it doesnt work then idk what does
+const corsOptions = {
+  origin: [
+    "https://maku.netlify.app/",
+    "http://maku.netlify.app/",
+    "maku.netlify.app/",
+  ],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT || 5000;
 
