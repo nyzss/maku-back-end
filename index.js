@@ -7,17 +7,12 @@ const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
 
-// probably dumb but i'm trying this, if it doesnt work then idk what does
-const corsOptions = {
-  origin: [
-    "https://maku.netlify.app/",
-    "http://maku.netlify.app/",
-    "maku.netlify.app/",
-  ],
-  credentials: true,
-};
-app.options("*", cors());
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 
 const PORT = process.env.PORT || 5000;
 
@@ -38,8 +33,7 @@ mongoose.connect(
   }
 );
 
-// probably dumb but i'm trying this, if it doesnt work then idk what does
-app.use("/auth", cors(corsOptions), require("./routes/authRoute"));
-app.use("/todo", cors(corsOptions), require("./routes/todoRoute"));
-app.use("/kana", cors(corsOptions), require("./routes/kanaRoute"));
-app.use("/users", cors(corsOptions), require("./routes/usersRoute"));
+app.use("/auth", require("./routes/authRoute"));
+app.use("/todo", require("./routes/todoRoute"));
+app.use("/kana", require("./routes/kanaRoute"));
+app.use("/users", require("./routes/usersRoute"));
